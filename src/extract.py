@@ -6,6 +6,9 @@ from pathlib import Path
 import httpx
 from dotenv import load_dotenv
 
+from db_connect import load_in_db
+from read_json import check_dataquality, parser
+
 logger = logging.getLogger(__name__)
 
 
@@ -128,12 +131,12 @@ def main():
     )
     years = ["2023", "2024", "2025", "2026"]
     league = "BL1"
-    for year in years:
-        extract_data(year, league)
-        
-        
-
-    
+    # for year in years:
+    #     extract_data(year, league)
+    teams, seasons, matches = parser(years, league)
+    if check_dataquality(teams):
+          print("No Problems with dataquality")
+    load_in_db(teams, seasons, matches)
 
 
 
