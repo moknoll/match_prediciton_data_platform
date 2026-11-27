@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_seasons
+    columns:
+      - name: season_id
+        data_tests:
+          - unique
+          - not_null
+      - name: competition_id
+        data_tests:
+          - not_null
+          - relationships:
+                arguments:
+                    to: ref('stg_competitions')
+                    field: competition_id
+      - name: start_date
+        data_tests:
+            - not_null
+      - name: end_date
+        data_tests:
+            - not_null

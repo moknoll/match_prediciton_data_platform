@@ -1,0 +1,38 @@
+
+version: 2
+
+models:
+  - name: stg_matches
+    columns:
+      - name: match_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: utc_date
+        data_tests:
+          - not_null
+
+      - name: home_team_id
+        data_tests:
+          - not_null
+          - relationships:
+                arguments: 
+                    to: ref('stg_teams')
+                    field: team_id
+
+      - name: away_team_id
+        data_tests:
+          - not_null
+          - relationships:
+                arguments: 
+                    to: ref('stg_teams')
+                    field: team_id
+
+      - name: season_id
+        data_tests:
+          - not_null
+
+      - name: match_status
+        data_tests:
+          - not_null

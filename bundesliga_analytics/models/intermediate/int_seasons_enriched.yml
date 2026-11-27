@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_seasons_enriched
+    columns:
+      - name: season_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: competition_code
+        data_tests:
+          - not_null
+
+      - name: competition_name
+        data_tests:
+          - not_null
+
+      - name: competition_id
+        data_tests:
+          - not_null

@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: fct_matches
+    columns:
+      - name: match_id
+        data_tests:
+          - unique
+          - not_null
+          
+
+      - name: season_id
+        data_tests:
+          - not_null
+          - relationships:
+                arguments: 
+                    to: ref('dim_seasons')
+                    field: season_id
+      
+      - name: competition_id
+        data_tests:
+            - not_null
+            - relationships:
+                arguments: 
+                    to: ref('dim_competitions')
+                    field: competition_id
+
+      - name: home_team_id
+        data_tests:
+            - not_null
+            - relationships:
+                arguments: 
+                    to: ref('dim_teams')
+                    field: team_id
+    
+      - name: away_team_id
+        data_tests:
+            - not_null
+            - relationships:
+                arguments: 
+                    to: ref('dim_teams')
+                    field: team_id
+    
+      - name: match_status
+        data_tests: 
+            - not_null
